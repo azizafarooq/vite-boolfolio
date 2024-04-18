@@ -1,4 +1,5 @@
 <script >
+import ProjectList from './components/ProjectList.vue';
 export default {
   data() {
     return {
@@ -6,24 +7,15 @@ export default {
     }
   },
 
-  created() {
-    axios.get('http://127.0.0.1:8000/api/projects').then((response) => {
-      this.projects = response.data.data;
-      })
-  }
+  components:{ProjectList},
+
 };
 </script>
 
 <template>
+  <h1>{{ title }}</h1>
   <div class="container mt-5">
-    <h1>{{ title }}</h1>
-    <div v-for="project in projects">
-      <ul>
-      <li>Title: {{ project.title }}</li>
-      <li>Description: {{ project.description }}</li>
-    </ul>
-    </div>
-    
+    <ProjectCard></ProjectCard>
   </div>
 
 </template>
